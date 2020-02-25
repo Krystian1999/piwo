@@ -1,12 +1,12 @@
       const fn2 = async () => {
       const str = document.getElementById("txt1").value;
       const api = `https://api.punkapi.com/v2/beers/?beer_name=`;
-   
-        
+        try{
         const response = await fetch(`${api}${str}` )
         const data = await response.json();
-       
+        
        const {name,tagline,first_brewed,description} = data[0];
+     
        let output ='<h2>Opis</h2>';
        output +=`
           <table>
@@ -24,7 +24,8 @@
      </tr>
   </table>
         `
-        document.getElementById('output').innerHTML = output    
+        document.getElementById('output').innerHTML = output   
+      }catch(err){
+         console.log(err);
+      } 
      }
-        
-       
